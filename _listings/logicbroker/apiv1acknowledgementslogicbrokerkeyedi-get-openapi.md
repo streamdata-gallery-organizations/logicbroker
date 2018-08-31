@@ -1,0 +1,285 @@
+---
+swagger: "2.0"
+x-collection-name: Logicbroker
+x-complete: 0
+info:
+  title: Logic Broker CommerceAPI Retrieve EDI
+  version: 1.0.0
+  description: Returns the latest EDI related to this document that was either sent
+    or received by Logicbroker. The EDI output may also contain other documents that
+    were in the same batch.
+host: stage.commerceapi.io
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /api/v1/Acknowledgements/{LogicbrokerKey}:
+    get:
+      summary: Get acknowledgement details
+      description: Request rate limited to 10 requests per second with bursts up to
+        100 requests.
+      operationId: Acknowledgement_GetAck
+      x-api-path-slug: apiv1acknowledgementslogicbrokerkey-get
+      parameters:
+      - in: path
+        name: LogicbrokerKey
+      responses:
+        200:
+          description: OK
+      tags:
+      - Acknowledgement
+      - Details
+  /api/v1/Acknowledgements/CustomXML:
+    post:
+      summary: Create acknowledgement(s) based on custom XML.
+      description: Request rate limited to 10 requests per second with bursts up to
+        100 requests.
+      operationId: Acknowledgement_UploadCustomXml
+      x-api-path-slug: apiv1acknowledgementscustomxml-post
+      parameters:
+      - in: body
+        name: data
+        description: XML data to upload
+        schema:
+          $ref: '#/definitions/holder'
+      - in: formData
+        name: file
+        description: File to upload
+      - in: query
+        name: xmlType
+        description: XML type, leave blank unless directed otherwise
+      responses:
+        200:
+          description: OK
+      tags:
+      - Acknowledgement(s)
+      - Based
+      - "On"
+      - Custom
+      - XML
+  /api/v1/Acknowledgements/Request:
+    post:
+      summary: Request an acknowledgement from a trading partner
+      description: Request rate limited to 10 requests per second with bursts up to
+        100 requests.
+      operationId: Acknowledgement_RequestAck
+      x-api-path-slug: apiv1acknowledgementsrequest-post
+      parameters:
+      - in: body
+        name: Acknowledgement
+        description: Acknowledgement request object
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Request
+      - Acknowledgement
+      - From
+      - Trading
+      - Partner
+  /api/v1/Acknowledgements:
+    get:
+      summary: Search acknowledgements
+      description: Request rate limited to 10 requests per second with bursts up to
+        100 requests.
+      operationId: Acknowledgement_SearchAcks
+      x-api-path-slug: apiv1acknowledgements-get
+      parameters:
+      - in: query
+        name: filters.advanced
+        description: Advanced query options
+      - in: query
+        name: filters.from
+        description: Beginning of time search window
+      - in: query
+        name: filters.linkkey
+        description: The linkkey identifies a group of related documents
+      - in: query
+        name: filters.page
+        description: Page number
+      - in: query
+        name: filters.pageSize
+        description: Page size
+      - in: query
+        name: filters.partnerPO
+        description: The partners purchase order number
+      - in: query
+        name: filters.receiverCompanyId
+        description: This Id is indicate who is received this document
+      - in: query
+        name: filters.senderCompanyId
+        description: This Id is indicate who is sent this document
+      - in: query
+        name: filters.sourceKey
+        description: Source key is usually the unique key the sender uses to find
+          this document
+      - in: query
+        name: filters.status
+        description: The status of the document
+      - in: query
+        name: filters.to
+        description: End of time search window
+      responses:
+        200:
+          description: OK
+      tags:
+      - Search
+      - Acknowledgements
+    post:
+      summary: Create an acknowledgement
+      description: Request rate limited to 10 requests per second with bursts up to
+        100 requests.
+      operationId: Acknowledgement_CreateAck
+      x-api-path-slug: apiv1acknowledgements-post
+      parameters:
+      - in: body
+        name: Acknowledgement
+        description: Acknowledgement object
+        schema:
+          $ref: '#/definitions/holder'
+      responses:
+        200:
+          description: OK
+      tags:
+      - Acknowledgement
+  /api/v1/Acknowledgements/{LogicbrokerKey}/Status/{Status}:
+    put:
+      summary: Update acknowledgement status
+      description: Request rate limited to 10 requests per second with bursts up to
+        100 requests.
+      operationId: Acknowledgement_UpdateAckStatus
+      x-api-path-slug: apiv1acknowledgementslogicbrokerkeystatusstatus-put
+      parameters:
+      - in: path
+        name: LogicbrokerKey
+        description: The Logicbroker Key
+      - in: path
+        name: Status
+        description: The Status
+      responses:
+        200:
+          description: OK
+      tags:
+      - Acknowledgement
+      - Status
+  /api/v1/Acknowledgements/{LogicbrokerKey}/Status:
+    get:
+      summary: Retrieve acknowledgement status
+      description: Request rate limited to 10 requests per second with bursts up to
+        100 requests.
+      operationId: Acknowledgement_GetAckStatus
+      x-api-path-slug: apiv1acknowledgementslogicbrokerkeystatus-get
+      parameters:
+      - in: path
+        name: LogicbrokerKey
+        description: The Logicbroker Key
+      responses:
+        200:
+          description: OK
+      tags:
+      - Retrieve
+      - Acknowledgement
+      - Status
+  /api/v1/Acknowledgements/Export:
+    get:
+      summary: Export to CSV/XLSX
+      description: "The 'fields' parameter accepts a comma delimited list of JSON
+        paths, for example: 'Identifier.LogicbrokerKey, BillToAddress.FirstName'.
+        It is also possible to rename these fields using syntax like 'DocumentDate
+        as Date' or 'DocumentDate Date'.\r\n            You must specify a value for
+        either the 'LogicbrokerKeys' parameter or the 'filter' parameter."
+      operationId: Acknowledgement_GetDocumentExportToken
+      x-api-path-slug: apiv1acknowledgementsexport-get
+      parameters:
+      - in: query
+        name: delimiter
+        description: The column delimiter to use for CSV export
+      - in: query
+        name: fields
+        description: The fields to export
+      - in: query
+        name: fileType
+        description: Valid options are csv, xlsx, xml, json and legacy
+      - in: query
+        name: filter.advanced
+        description: Advanced query options
+      - in: query
+        name: filter.from
+        description: Beginning of time search window
+      - in: query
+        name: filter.linkkey
+        description: The linkkey identifies a group of related documents
+      - in: query
+        name: filter.page
+        description: Page number
+      - in: query
+        name: filter.pageSize
+        description: Page size
+      - in: query
+        name: filter.partnerPO
+        description: The partners purchase order number
+      - in: query
+        name: filter.receiverCompanyId
+        description: This Id is indicate who is received this document
+      - in: query
+        name: filter.senderCompanyId
+        description: This Id is indicate who is sent this document
+      - in: query
+        name: filter.sourceKey
+        description: Source key is usually the unique key the sender uses to find
+          this document
+      - in: query
+        name: filter.status
+        description: The status of the document
+      - in: query
+        name: filter.to
+        description: End of time search window
+      - in: query
+        name: LogicbrokerKeys
+        description: The logicbroker keys
+      responses:
+        200:
+          description: OK
+      tags:
+      - Export
+      - To
+      - CSV
+      - XLSX
+  /api/v1/Acknowledgements/{LogicbrokerKey}/EDI:
+    get:
+      summary: Retrieve EDI
+      description: Returns the latest EDI related to this document that was either
+        sent or received by Logicbroker. The EDI output may also contain other documents
+        that were in the same batch.
+      operationId: Acknowledgement_GetDocumentEDI
+      x-api-path-slug: apiv1acknowledgementslogicbrokerkeyedi-get
+      parameters:
+      - in: path
+        name: LogicbrokerKey
+        description: The Logicbroker key
+      responses:
+        200:
+          description: OK
+      tags:
+      - Retrieve
+      - EDI
+x-streamrank:
+  polling_total_time_average: 0
+  polling_size_download_average: 0
+  streaming_total_time_average: 0
+  streaming_size_download_average: 0
+  change_yes: 0
+  change_no: 0
+  time_percentage: 0
+  size_percentage: 0
+  change_percentage: 0
+  last_run: ""
+  days_run: 0
+  minute_run: 0
+---

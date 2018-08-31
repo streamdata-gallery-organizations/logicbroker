@@ -1,9 +1,12 @@
+---
 swagger: "2.0"
 x-collection-name: Logicbroker
-x-complete: 1
+x-complete: 0
 info:
-  title: CommerceAPI
+  title: Logic Broker CommerceAPI Get configured document statuses for each document
   version: 1.0.0
+  description: Request rate limited to 10 requests per second with bursts up to 100
+    requests.
 host: stage.commerceapi.io
 basePath: /
 schemes:
@@ -2569,108 +2572,17 @@ paths:
       - Document
       - Statuseseach
       - Document
-  /api/v1/Webhooks:
-    get:
-      summary: Get list of webhooks
-      description: Request rate limited to 10 requests per second with bursts up to
-        100 requests.
-      operationId: Webhook_GetWebHooks
-      x-api-path-slug: apiv1webhooks-get
-      responses:
-        200:
-          description: OK
-      tags:
-      - List
-      - Of
-      - Webhooks
-    post:
-      summary: Create a new webhook
-      description: Request rate limited to 10 requests per second with bursts up to
-        100 requests.
-      operationId: Webhook_CreateWebhook
-      x-api-path-slug: apiv1webhooks-post
-      parameters:
-      - in: body
-        name: Webhook
-        description: The new webhook
-        schema:
-          $ref: '#/definitions/holder'
-      responses:
-        200:
-          description: OK
-      tags:
-      - New
-      - Webhook
-  /api/v1/Webhooks/{WebhookId}:
-    get:
-      summary: Get webhook details
-      description: Request rate limited to 10 requests per second with bursts up to
-        100 requests.
-      operationId: Webhook_GetWebhook
-      x-api-path-slug: apiv1webhookswebhookid-get
-      parameters:
-      - in: path
-        name: WebhookId
-        description: The webhook id
-      responses:
-        200:
-          description: OK
-      tags:
-      - Webhook
-      - Details
-    put:
-      summary: Update a webhook
-      description: Request rate limited to 10 requests per second with bursts up to
-        100 requests.
-      operationId: Webhook_UpdateWebhook
-      x-api-path-slug: apiv1webhookswebhookid-put
-      parameters:
-      - in: body
-        name: Webhook
-        description: The webhook
-        schema:
-          $ref: '#/definitions/holder'
-      - in: path
-        name: WebhookId
-        description: The webhook id
-      responses:
-        200:
-          description: OK
-      tags:
-      - Webhook
-    delete:
-      summary: Delete a webhook.
-      description: Request rate limited to 10 requests per second with bursts up to
-        100 requests.
-      operationId: Webhook_DeleteWebhook
-      x-api-path-slug: apiv1webhookswebhookid-delete
-      parameters:
-      - in: path
-        name: WebhookId
-        description: The webhook id
-      responses:
-        200:
-          description: OK
-      tags:
-      - Webhook
-  /api/v1/Webhooks/{WebhookId}/Test:
-    get:
-      summary: Test a webhook endpoint.
-      description: Request rate limited to 10 requests per second with bursts up to
-        100 requests.
-      operationId: Webhook_TestWebhook
-      x-api-path-slug: apiv1webhookswebhookidtest-get
-      parameters:
-      - in: query
-        name: LogicbrokerKey
-        description: The key for a test document
-      - in: path
-        name: WebhookId
-        description: The webhook id
-      responses:
-        200:
-          description: OK
-      tags:
-      - Test
-      - Webhook
-      - Endpoint
+x-streamrank:
+  polling_total_time_average: 0
+  polling_size_download_average: 0
+  streaming_total_time_average: 0
+  streaming_size_download_average: 0
+  change_yes: 0
+  change_no: 0
+  time_percentage: 0
+  size_percentage: 0
+  change_percentage: 0
+  last_run: ""
+  days_run: 0
+  minute_run: 0
+---

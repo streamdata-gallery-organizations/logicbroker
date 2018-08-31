@@ -1,0 +1,33 @@
+{
+	"name": "Streadata.io API Gallery - Logicbroker",
+	"description": "This is a repository of logicbroker APIs, self-contained as a Github repository, with HTML and YAML representations of the APIs and their surrounding operations.",
+	"image": "http://template.streamdata.gallery/assets/logicbroker.png",
+	"created": "2018-02-24",
+	"modified": "2018-08-30",
+	"url": "http://logicbroker.streamdata.gallery/apis.json",
+	"specificationVersion": "0.14",
+	"apis": [
+		{
+			"name": "Logicbroker",
+			"x-api-slug": "logicbroker",
+			"description": "Logicbroker provides beautiful technology that unites brands, retailers, and the systems they rely on. Harness the latest in cloud and supply chain automation technology with unrivaled speed and integration flexibility. We craft the connections that enable digital commerce.",
+			"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/logicbroker-logo.png",
+			"humanURL": "https://www.logicbroker.com/",
+			"baseURL": "https://stage.commerceapi.io//",
+			"tags": "Logicbroker",
+			"properties": [
+				{
+					"type": "x-openapi-spec",
+					"url": "https://raw.githubusercontent.com/streamdata-gallery-organizations/logicbroker/master/_listings/logicbroker/openapi.md"
+				}
+			]
+		}
+	],
+	"tags": "Logicbroker",
+	"include": [
+		{
+			"name": "Logicbroker",
+			"url": "https://raw.githubusercontent.com/streamdata-gallery-organizations/logicbroker/master/_listings/logicbroker/apis.yaml"
+		}
+	]
+}
